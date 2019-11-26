@@ -48,13 +48,28 @@ public class MainActivity extends AppCompatActivity {
          public void onClick(View view) {
              Random random= new Random();
              int score = random.nextInt(2000);
-             textScore.setText(""+score);// (String.Valueof(score));
+
+             textScore.setText(String.valueOf(score));// (String.Valueof(score));
              int getSaveScore  =  preferences.getInt("hight_score",0);
              if (score>getSaveScore){
                  textHighScore.setText("High Score :"+ score);
                  editor.putInt("High score :",score);
                  editor.commit();
              }
+         }
+     });
+
+
+
+     btnReset.setOnClickListener(new View.OnClickListener() {
+         @Override
+         public void onClick(View view) {
+             editor.putInt("hight score",0);
+             editor.apply();
+             textHighScore.setText("High score: "+0);
+             textScore.setText("0");
+             
+
          }
      });
 
